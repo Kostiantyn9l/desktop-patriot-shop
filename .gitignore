@@ -12,4 +12,4 @@ build/
 *.log
 
 # Prisma generated client
-/src/generated/prisma
+**/generated/prisma
