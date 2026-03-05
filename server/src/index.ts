@@ -24,3 +24,12 @@ const start = async () => {
 };
 
 start();
+
+const shutdown = async () => {
+  console.log("Shutting down...");
+  await prisma.$disconnect();
+  process.exit(0);
+};
+
+process.on("SIGINT", shutdown);
+process.on("SIGTERM", shutdown);
