@@ -14,16 +14,122 @@ enum Role {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
+  id       Int    @id @default(autoincrement())
   name     String
-  email    String  @unique
+  email    String @unique
   password String
-  role     Role    @default(USER)
-  basket   Basket?
+  role     Role   @default(USER)
+
+  basket  Basket?
+  ratings Rating[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
 }
 
 model Basket {
-  id     Int  @id @default(autoincrement())
-  user   User @relation(fields: [userId], references: [id])
-  userId Int  @unique
+  id     Int @id @default(autoincrement())
+  userId Int @unique
+
+  user User @relation(fields: [userId], references: [id])
+
+  basketWeapons BasketWeapon[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("baskets")
+}
+
+model BasketWeapon {
+  id       Int @id @default(autoincrement())
+  basketId Int
+  weaponId Int
+
+  basket Basket @relation(fields: [basketId], references: [id])
+  weapon Weapon @relation(fields: [weaponId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("basket_weapons")
+}
+
+model Weapon {
+  id     Int    @id @default(autoincrement())
+  name   String @unique
+  price  Float
+  rating Float  @default(0)
+  img    String
+
+  typeId  Int
+  brandId Int
+
+  type  Type  @relation(fields: [typeId], references: [id])
+  brand Brand @relation(fields: [brandId], references: [id])
+
+  info    WeaponInfo?
+  ratings Rating[]
+  baskets BasketWeapon[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("weapons")
+}
+
+model WeaponInfo {
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String
+
+  weaponId Int    @unique
+  weapon   Weapon @relation(fields: [weaponId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("weapon_info")
+}
+
+model Rating {
+  id   Int @id @default(autoincrement())
+  rate Int
+
+  userId   Int
+  weaponId Int
+
+  user   User   @relation(fields: [userId], references: [id])
+  weapon Weapon @relation(fields: [weaponId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("ratings")
+}
+
+model Type {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  weapons Weapon[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("types")
+}
+
+model Brand {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  weapons Weapon[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("brands")
 }
