@@ -4,6 +4,7 @@ import cors from "cors";
 import fileUpload from "express-fileupload";
 import prisma from "./lib/prisma.js";
 import rootRouter from "./routes/index.js";
+import errorHandler from "./middleware/ErrorHandlingMiddleware.js";
 
 const app:Express = express();
 const PORT = process.env.PORT;
@@ -12,6 +13,8 @@ app.use(cors());
 app.use(express.json());
 app.use(fileUpload({}));
 app.use('/api', rootRouter);
+
+app.use(errorHandler);
 
 const start = async () => {
   try{
