@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express, {type Express, type Request, type Response} from "express";
 import cors from "cors";
+import fileUpload from "express-fileupload";
 import prisma from "./lib/prisma.js";
 import rootRouter from "./routes/index.js";
 
@@ -9,6 +10,7 @@ const PORT = process.env.PORT;
 
 app.use(cors());
 app.use(express.json());
+app.use(fileUpload({}));
 app.use('/api', rootRouter);
 
 const start = async () => {
