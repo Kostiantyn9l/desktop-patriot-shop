@@ -2,14 +2,14 @@ import "dotenv/config";
 import express, {type Express, type Request, type Response} from "express";
 import cors from "cors";
 import { prisma } from "./lib/prisma.js";
-import router from "./routes/index.js";
+import rootRouter from "./routes/index.js";
 
 const app:Express = express();
 const PORT = process.env.PORT;
 
 app.use(cors());
 app.use(express.json());
-app.use('/api', router);
+app.use('/api', rootRouter);
 
 const start = async () => {
   try{

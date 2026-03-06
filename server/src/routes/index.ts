@@ -1,15 +1,15 @@
-import express from "express";
+import {Router} from "express";
+
 import userRouter from "./userRouter.js";
 import weaponRouter from "./weaponRouter.js";
 import typeRouter from "./typeRouter.js";
 import brandRouter from "./brandRouter.js";
 
+const rootRouter: Router = Router();
 
-const router = express.Router();
+rootRouter.use('/user', userRouter);
+rootRouter.use('/weapon', weaponRouter);
+rootRouter.use('/type', typeRouter);
+rootRouter.use('/brand', brandRouter);
 
-router.use('/user', userRouter);
-router.use('/weapon', weaponRouter);
-router.use('/type', typeRouter);
-router.use('/brand', brandRouter);
-
-export default router;
+export default rootRouter;
