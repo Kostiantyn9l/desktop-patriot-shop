@@ -1,7 +1,7 @@
 import "dotenv/config";
 import express, {type Express, type Request, type Response} from "express";
 import cors from "cors";
-import { prisma } from "./lib/prisma.js";
+import prisma from "./lib/prisma.js";
 import rootRouter from "./routes/index.js";
 
 const app:Express = express();
