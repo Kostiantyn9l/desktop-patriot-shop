@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import type { UploadedFile } from "express-fileupload";
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
+import { Prisma } from "../../prisma/generated/prisma/client.js";
 
 import prisma from "../lib/prisma.js";
 import ApiError from "../error/ApiError.js";
@@ -40,7 +41,42 @@ class WeaponController {
     }
 
     async getAll(req: Request, res: Response) {
+        let {brandId, typeId, limit, page} = req.query;
         
+        const pageNumber = Number(page) || 1;
+        const limitNumber = Number(limit) || 9;
+        
+        let offset = pageNumber * limitNumber - limitNumber;
+
+        const where: Prisma.WeaponWhereInput = {};
+        
+        if(brandId) {
+            where.brandId = Number(brandId);
+        }
+        if(typeId) {
+            where.typeId = Number(typeId);
+        }
+
+        const [weapons, count] = await Promise.all([
+            prisma.weapon.findMany({
+                where,
+                orderBy: {
+                    id: "asc"
+                },
+                take: limitNumber,
+                skip: offset
+            }),
+            prisma.weapon.count({
+                where
+            })
+        ])
+        
+        return res.json({
+            count,
+            page: pageNumber,
+            limit: limitNumber,
+            row: weapons
+        });
     }
 
     async getOne(req: Request, res: Response) {
