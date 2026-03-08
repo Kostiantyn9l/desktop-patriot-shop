@@ -5,12 +5,18 @@ import fileUpload from "express-fileupload";
 import prisma from "./lib/prisma.js";
 import rootRouter from "./routes/index.js";
 import errorHandler from "./middleware/ErrorHandlingMiddleware.js";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const app:Express = express();
 const PORT = process.env.PORT;
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.resolve(__dirname, "static")));
 app.use(fileUpload({}));
 app.use('/api', rootRouter);
 
