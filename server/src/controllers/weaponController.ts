@@ -29,6 +29,23 @@ class WeaponController {
                 }
             });
 
+            type weaponInfoInput = {
+                title: string,
+                description: string
+            } 
+
+            if(info) {
+                const parsedInfo: weaponInfoInput[] = JSON.parse(info);
+
+                await prisma.weaponInfo.createMany({
+                    data: parsedInfo.map(i => ({
+                        title: i.title,
+                        description: i.description,
+                        weaponId: weapon.id
+                    }))
+                })
+            }
+
             return res.json(weapon);
         } catch(e: unknown) {
             if(e instanceof Error) {
@@ -80,7 +97,13 @@ class WeaponController {
     }
 
     async getOne(req: Request, res: Response) {
-        
+        const {id} = req.params;
+        const weapon = await prisma.weapon.findUnique({
+            where: { id: Number(id) },
+            include: { info: true }
+        });
+
+        return res.json(weapon);
     }
 }
 
