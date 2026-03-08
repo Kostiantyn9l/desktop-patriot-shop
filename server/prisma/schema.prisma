@@ -70,7 +70,7 @@ model Weapon {
   type  Type  @relation(fields: [typeId], references: [id])
   brand Brand @relation(fields: [brandId], references: [id])
 
-  info    WeaponInfo?
+  info    WeaponInfo[]
   ratings Rating[]
   baskets BasketWeapon[]
 
@@ -85,7 +85,7 @@ model WeaponInfo {
   title       String
   description String
 
-  weaponId Int    @unique
+  weaponId Int
   weapon   Weapon @relation(fields: [weaponId], references: [id])
 
   createdAt DateTime @default(now())
