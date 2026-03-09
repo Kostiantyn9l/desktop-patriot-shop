@@ -1,5 +1,5 @@
-import "dotenv/config";
-import express, {type Express, type Request, type Response} from "express";
+import { PORT } from "./secrets.js";
+import express, {type Express} from "express";
 import cors from "cors";
 import fileUpload from "express-fileupload";
 import prisma from "./lib/prisma.js";
@@ -9,7 +9,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const app:Express = express();
-const PORT = process.env.PORT;
+const port = PORT;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -27,8 +27,8 @@ const start = async () => {
    await prisma.$connect();
    console.log("DB connected");
 
-   app.listen(PORT, () => {
-    console.log(`Server started on port: ${PORT}`);
+   app.listen(port, () => {
+    console.log(`Server started on port: ${port}`);
    });
   }catch(e){
     console.log("Server failed to start", e);
