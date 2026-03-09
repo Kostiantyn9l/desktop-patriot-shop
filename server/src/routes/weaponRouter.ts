@@ -1,9 +1,10 @@
 import express from "express";
 import weaponController from "../controllers/weaponController.js";
+import checkRoleMiddleware from "../middleware/checkRoleMiddleware.js";
 
 const router = express.Router();
 
-router.post('/', weaponController.create);
+router.post('/', checkRoleMiddleware("ADMIN"), weaponController.create);
 router.get('/', weaponController.getAll);
 router.get('/:id', weaponController.getOne);
 
