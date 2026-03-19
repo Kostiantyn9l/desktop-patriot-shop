@@ -1,11 +1,19 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { authRoutes, errorRoutes, publicRoutes } from "../routes";
+import { useContext, type FC } from "react";
+import { Context } from "../main";
 
-const AppRouter = () => {
-    const isAuth = false;
+const AppRouter: FC = () => {
+    const context = useContext(Context);
+    if(!context) {
+        throw new Error("Context not provided");
+    }
+
+    const { user } = context;
+    console.log(user);
 
     const routes = [
-        ...(isAuth ? authRoutes : []),
+        ...(user.isAuth ? authRoutes : []),
         ...publicRoutes,
         ...errorRoutes
     ]
