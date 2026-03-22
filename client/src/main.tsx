@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import UserStore from './store/UserStore.ts';
-import WeaponStore from './store/WeaponStore.tsx';
+import WeaponStore from './store/WeaponStore.ts';
 
 interface ContextValue {
   user: UserStore;
