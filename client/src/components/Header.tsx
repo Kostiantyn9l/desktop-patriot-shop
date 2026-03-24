@@ -3,7 +3,7 @@ import { Context } from "../main";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 import { ADMIN_ROUTE, SHOP_ROUTE } from "../utils/consts";
-import AuthModal from "./modals/AuthModal";
+import AuthModal from "./modals/authModals/AuthModal";
 
 const Header: FC = observer(() => {
     const context = useContext(Context);
