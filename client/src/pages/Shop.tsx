@@ -1,7 +1,13 @@
+import BrandSidebar from "../components/BrandSidebar";
+import CategorySidebar from "../components/CategorySidebar";
+import WeaponList from "../components/WeaponList";
+
 const Shop = () => {
     return (
         <div>
-            SHOP
+            <CategorySidebar />
+            <BrandSidebar />
+            <WeaponList />
         </div>
     )
 }
