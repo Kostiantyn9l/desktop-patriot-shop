@@ -1,11 +1,11 @@
 export interface Type {
-    id: number;
-    name: string;
+    id?: number;
+    name?: string;
 }
 
 export interface Brand {
-    id: number;
-    name: string;
+    id?: number;
+    name?: string;
 }
 
 export interface Weapon {
