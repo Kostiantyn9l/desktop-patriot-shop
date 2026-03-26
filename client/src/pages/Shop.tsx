@@ -1,6 +1,6 @@
-import BrandSidebar from "../components/BrandSidebar";
-import CategorySidebar from "../components/CategorySidebar";
-import WeaponList from "../components/WeaponList";
+import BrandSidebar from "../widgets/BrandSidebar/BrandSidebar";
+import CategorySidebar from "../widgets/CategorySidebar/CategorySidebar";
+import WeaponList from "../entities/weapon/ui/WeaponList";
 
 const Shop = () => {
     return (

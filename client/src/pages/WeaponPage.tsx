@@ -1,4 +1,4 @@
-import type { Weapon } from "../types/types";
+import type { Weapon } from "../shared/types/types";
 import { useParams } from "react-router-dom";
 
 interface Description {

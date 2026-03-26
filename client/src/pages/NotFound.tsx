@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { SHOP_ROUTE } from "../utils/consts"
+import { SHOP_ROUTE } from "../shared/lib/consts"
 
 const NotFound = () => {
     return (
