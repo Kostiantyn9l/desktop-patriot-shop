@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { registration } from "../api/authAPI";
 import { useStore } from "../../../shared/hooks/useStore";
 
 interface RegisterModalProps {
@@ -7,6 +9,15 @@ interface RegisterModalProps {
 
 const RegisterModal: React.FC<RegisterModalProps> = ({ onSwitchToLogin, onClose }) => {
     const { user } = useStore();
+
+    const [name, setName] = useState<string>("");
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    
+    const signIn = async () => {
+        const response = await registration(name, email, password);
+        console.log(response);
+    }
 
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -25,6 +36,8 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onSwitchToLogin, onClose 
                         name="username"
                         type="text"
                         placeholder="Введіть ім'я"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                     />
                 </label>
 
@@ -34,6 +47,8 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onSwitchToLogin, onClose 
                         name="email"
                         type="email"
                         placeholder="Введіть email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                 </label>
 
@@ -43,19 +58,12 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ onSwitchToLogin, onClose 
                         name="password"
                         type="password"
                         placeholder="Введіть пароль"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                 </label>
 
-                <label>
-                    <span>Повторіть пароль</span>
-                    <input
-                        name="confirmPassword"
-                        type="password"
-                        placeholder="Повторіть пароль"
-                    />
-                </label>
-
-                <button type="submit">Зареєструватися</button>
+                <button type="submit" onClick={signIn}>Зареєструватися</button>
             </form>
 
             <p>Вже є аккаунт? <button onClick={onSwitchToLogin}>Увійти</button></p>
