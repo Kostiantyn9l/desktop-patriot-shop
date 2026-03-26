@@ -1,9 +1,9 @@
 import type { ComponentType } from "react"
-import Admin from "./pages/Admin"
-import Shop from "./pages/Shop"
-import { ADMIN_ROUTE, NOT_FOUND_ROUTE, SHOP_ROUTE, WEAPON_PAGE_ROUTE } from "./utils/consts"
-import NotFound from "./pages/NotFound"
-import WeaponPage from "./pages/WeaponPage"
+import Admin from "../pages/Admin"
+import Shop from "../pages/Shop"
+import { ADMIN_ROUTE, NOT_FOUND_ROUTE, SHOP_ROUTE, WEAPON_PAGE_ROUTE } from "../shared/lib/consts"
+import NotFound from "../pages/NotFound"
+import WeaponPage from "../pages/WeaponPage"
 
 interface AppRoute {
     path: string,
@@ -23,7 +23,7 @@ export const publicRoutes: AppRoute[] = [
         Component: Shop
     }, 
     {
-        path: WEAPON_PAGE_ROUTE + "/:id",
+        path: `${WEAPON_PAGE_ROUTE}/:id`,
         Component: WeaponPage
     }
 ]

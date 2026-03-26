@@ -1,24 +1,18 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { authRoutes, errorRoutes, publicRoutes } from "../routes";
-import { useContext, type FC } from "react";
-import { Context } from "../main";
-import Layout from "./Layout";
+import { authRoutes, errorRoutes, publicRoutes } from "./routes";
+import { useMemo, type FC } from "react";
+import Layout from "../widgets/Layout/Layout";
 import { observer } from "mobx-react-lite";
+import { useStore } from "../shared/hooks/useStore";
 
 const AppRouter: FC = observer(() => {
-    const context = useContext(Context);
-    if(!context) {
-        throw new Error("Context not provided");
-    }
+    const { user } = useStore();
 
-    const { user } = context;
-    console.log(user);
-
-    const routes = [
+    const routes = useMemo(() => [
         ...(user.isAuth ? authRoutes : []),
         ...publicRoutes,
         ...errorRoutes
-    ]
+    ], [user.isAuth]);
 
     return (
         <Routes>

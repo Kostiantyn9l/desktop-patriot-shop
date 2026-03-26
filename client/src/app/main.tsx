@@ -1,9 +1,8 @@
 import { createContext, StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
 import App from './App.tsx'
-import UserStore from './store/UserStore.ts';
-import WeaponStore from './store/WeaponStore.ts';
+import UserStore from '../entities/user/model/UserStore.ts';
+import WeaponStore from '../entities/weapon/model/WeaponStore.ts';
 
 interface ContextValue {
   user: UserStore;
@@ -11,6 +10,8 @@ interface ContextValue {
 }
 
 export const Context = createContext<ContextValue | null>(null);
+
+console.log("API URL:", import.meta.env.VITE_REACT_APP_API_URL);
 
 createRoot(document.getElementById('root')!).render(
   <Context.Provider value={{
