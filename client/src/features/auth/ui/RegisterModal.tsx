@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { Context } from "../../../main";
+import { useStore } from "../../../shared/hooks/useStore";
 
 interface RegisterModalProps {
     onSwitchToLogin: () => void;
@@ -7,12 +6,7 @@ interface RegisterModalProps {
 }
 
 const RegisterModal: React.FC<RegisterModalProps> = ({ onSwitchToLogin, onClose }) => {
-    const context = useContext(Context);
-    if(!context) {
-        throw new Error("Context not provided");
-    }
-
-    const { user } = context;
+    const { user } = useStore();
 
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
