@@ -1,11 +1,13 @@
 import { makeAutoObservable } from "mobx";
-import type { User } from "../types/types";
+import type { User } from "../../../shared/types/types";
 
 export default class UserStore {
     private _isAuth: boolean = false;
-    private _user: User = {};
+    private _user: User | null = null;
 
     constructor() {
+        makeAutoObservable(this);
+
         const savedIsAuth = localStorage.getItem("isAuth");
         const savedUser = localStorage.getItem("user");
 
@@ -15,13 +17,12 @@ export default class UserStore {
 
         if (savedUser) {
             try {
-                this._user = JSON.parse(savedUser);
+                const parsed = JSON.parse(savedUser);
+                this._user = parsed as User;
             } catch {
-                this._user = {};
+                this._user = null;
             }
         }
-
-        makeAutoObservable(this);
     }
 
     setIsAuth(bool: boolean): void {
@@ -29,18 +30,22 @@ export default class UserStore {
         localStorage.setItem("isAuth", String(bool));
     }
 
-    setUser(user: User): void {
+    setUser(user: User | null): void {
         this._user = user;
-        try {
-            localStorage.setItem("user", JSON.stringify(user));
-        } catch {
+        if (user) {
+            try {
+                localStorage.setItem("user", JSON.stringify(user));
+            } catch {
+                localStorage.removeItem("user");
+            }
+        } else {
             localStorage.removeItem("user");
         }
     }
 
     clearAuth(): void {
         this._isAuth = false;
-        this._user = {};
+        this._user = null;
         localStorage.removeItem("isAuth");
         localStorage.removeItem("user");
     }
@@ -49,7 +54,7 @@ export default class UserStore {
         return this._isAuth;
     }
 
-    get user(): User {
+    get user(): User | null {
         return this._user;
     }
 }
