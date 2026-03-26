@@ -1,6 +1,7 @@
 import { type FC } from "react";
+import "./Footer.scss";
 
-const Header: FC = () => {
+const Footer: FC = () => {
     return (
         <footer>
             <p>&copy; 2023 Patriot. All rights reserved.</p>
@@ -8,4 +9,4 @@ const Header: FC = () => {
     );
 };
 
-export default Header;
+export default Footer;
