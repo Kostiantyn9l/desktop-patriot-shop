@@ -56,18 +56,18 @@ class userController {
         return res.json({user, basket, token});
     }
 
-    async login(req: Request, res: Response) {
+    async login(req: Request, res: Response, next: NextFunction) {
         const {email, password} = req.body;
 
         const user = await prisma.user.findFirst({
             where: {email: String(email)}
         });
         if(!user) {
-            return ApiError.internal("Користувач не знайдений!");
+            return next(ApiError.internal("Користувач не знайдений!"));
         }
         let comparePassword = bcrypt.compareSync(password, user.password);
         if(!comparePassword) {
-            return ApiError.internal("Пароль не вірний!");
+            return next(ApiError.internal("Пароль не вірний!"));
         }
 
         const token = generateJWT({
