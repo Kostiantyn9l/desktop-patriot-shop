@@ -78,13 +78,13 @@ class userController {
         return res.json({user, token});
     }
 
-    async auth(req: AuthRequest, res: Response, next: NextFunction) {
+    async checkAuth(req: AuthRequest, res: Response, next: NextFunction) {
         const token = generateJWT({
             id: req.user!.id,
             role: req.user!.role
         });
 
-        return res.json(token)
+        return res.json({ token })
     }
 }
 
