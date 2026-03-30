@@ -48,6 +48,7 @@ export default class UserStore {
         this._user = null;
         localStorage.removeItem("isAuth");
         localStorage.removeItem("user");
+        localStorage.removeItem("token");
     }
 
     get isAuth(): boolean {
