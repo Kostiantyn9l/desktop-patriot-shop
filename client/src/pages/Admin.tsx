@@ -1,7 +1,7 @@
 import { useState } from "react";
-import CreateBrand from "../components/modals/adminModals/CreateBrandModal";
-import CreateCategory from "../components/modals/adminModals/CreateCategoryModal";
-import CreateWeapon from "../components/modals/adminModals/CreateWeaponModal";
+import CreateBrand from "../features/weapon/ui/CreateBrandModal";
+import CreateCategory from "../features/weapon/ui/CreateCategoryModal";
+import CreateWeapon from "../features/weapon/ui/CreateWeaponModal";
 
 const Admin = () => {
     const [categoryShow, setCategoryShow] = useState(false);
