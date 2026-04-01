@@ -3,8 +3,10 @@ import AppRouter from "./AppRouter"
 import { useEffect, useState } from "react";
 import { checkAuth } from "../features/auth/api/authAPI";
 import { useStore } from "../shared/hooks/useStore";
+import { observer } from "mobx-react-lite";
+import { Spinner } from "../shared/ui/Spinner/Spinner";
 
-function App() {
+const App = observer(() => {
   const { user } = useStore();
 
   const [loading, setLoading] = useState<boolean>(true);
@@ -15,10 +17,10 @@ function App() {
         user.setIsAuth(true);
       })
       .finally(() => setLoading(false))
-  }, []);
+  }, [user]);
 
   if (loading) {
-    return null;
+    return <Spinner />;
   };
 
   return (
@@ -26,6 +28,6 @@ function App() {
       <AppRouter />
     </BrowserRouter>
   )
-}
+})
 
 export default App;
