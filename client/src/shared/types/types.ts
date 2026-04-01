@@ -14,6 +14,15 @@ export interface Weapon {
     price: number;
     rating: number;
     img: string;
+    typeId: number;
+    brandId: number;
+    info: Description[];
+}
+
+export interface Description {
+    id: number;
+    title: string;
+    description: string;
 }
 
 export interface User {
