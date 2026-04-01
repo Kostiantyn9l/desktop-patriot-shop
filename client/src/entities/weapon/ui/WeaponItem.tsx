@@ -18,7 +18,7 @@ const WeaponItem: FC<WeaponItemProps> = ({ weapon }) => {
         >
             <img 
                 className="weapon-item__img" 
-                src={weapon.img} 
+                src={import.meta.env.VITE_REACT_APP_API_URL + weapon.img} 
                 alt={weapon.name} 
             />
             <div className="weapon-item__info">

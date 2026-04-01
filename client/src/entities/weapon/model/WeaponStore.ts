@@ -2,22 +2,9 @@ import { makeAutoObservable } from "mobx";
 import type { Brand, Type, Weapon } from "../../../shared/types/types";
 
 export default class WeaponStore {
-    private _types: Type[] = [
-        {id: 1, name: 'Зброя та патрони'},
-        {id: 2, name: 'Оптика та кріплення'},
-        {id: 3, name: 'Ножі та інструменти'},
-        {id: 4, name: 'Догляд та зберігання'},
-        {id: 5, name: 'Екіпірування'},
-        {id: 6, name: 'Самозахист'}
-    ];
-    private _brands: Brand[] = [
-        {id: 1, name: 'A&F'},
-        {id: 2, name: 'Air Pistol'}
-    ];
-    private _weapons: Weapon[] = [
-        {id: 1, name: 'tratata', price: 25000, rating: 5, img: 'https'},
-        {id: 2, name: 'boom', price: 25000, rating: 5, img: 'https'}
-    ];
+    private _types: Type[] = [];
+    private _brands: Brand[] = [];
+    private _weapons: Weapon[] = [];
     private _selectedType: Type | null = null;
     private _selectedBrand: Brand | null = null;
 
@@ -47,8 +34,8 @@ export default class WeaponStore {
     // Computed values
     get filteredWeapons(): Weapon[] {
         return this._weapons.filter(weapon => {
-            const matchesType = this._selectedType ? weapon.id === this._selectedType.id : true;
-            const matchesBrand = this._selectedBrand ? weapon.id === this._selectedBrand.id : true;
+            const matchesType = this._selectedType ? weapon.typeId === this._selectedType.id : true;
+            const matchesBrand = this._selectedBrand ? weapon.brandId === this._selectedBrand.id : true;
             return matchesType && matchesBrand;
         });
     }
