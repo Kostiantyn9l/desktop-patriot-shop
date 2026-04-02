@@ -7,6 +7,9 @@ export default class WeaponStore {
     private _weapons: Weapon[] = [];
     private _selectedType: Type | null = null;
     private _selectedBrand: Brand | null = null;
+    private _page: number = 1;
+    private _totalCount: number = 0;
+    private _limit: number = 2;
 
     constructor() {
         makeAutoObservable(this);
@@ -15,13 +18,23 @@ export default class WeaponStore {
     // Setters
     setTypes(types: Type[]): void{ this._types = types}
     setBrands(brands: Brand[]): void { this._brands = brands }
-    setSelectedType(type: Type | null): void { this._selectedType = type }
-    setSelectedBrand(brand: Brand | null): void { this._selectedBrand = brand }
+    setSelectedType(type: Type | null): void {
+        this._selectedType = type;
+        this._page = 1;
+    }
+    setSelectedBrand(brand: Brand | null): void {
+        this._selectedBrand = brand;
+        this._page = 1;
+    }
     setWeapons(weapons: Weapon[]): void { this._weapons = weapons }
+    setPage(page: number) { this._page = page }
+    setTotalCount(totalCount: number) { this._totalCount = totalCount }
+    setLimit(limit: number) { this._limit = limit; }
 
     resetFilters(): void {
         this._selectedBrand = null;
         this._selectedType = null;
+        this._page = 1;
     }
 
     // Getters
@@ -30,6 +43,9 @@ export default class WeaponStore {
     get weapons(): Weapon[] { return this._weapons; }
     get type(): Type | null { return this._selectedType; }
     get brand(): Brand | null { return this._selectedBrand; }
+    get page(): number { return this._page; }
+    get totalCount(): number { return this._totalCount; }
+    get limit(): number { return this._limit; }
 
     // Computed values
     get filteredWeapons(): Weapon[] {
