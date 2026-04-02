@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ADMIN_ROUTE, SHOP_ROUTE } from "../../shared/lib/consts";
 import AuthModal from "../../features/auth/ui/AuthModal";
 import { useStore } from "../../shared/hooks/useStore";
-import "./Header.scss";
+import styles from "./Header.module.scss"
 
 const Header: FC = observer(() => {
     const { user } = useStore();
@@ -18,28 +18,46 @@ const Header: FC = observer(() => {
     }
 
     return (
-        <header>
-            <div>
-                <Link to={SHOP_ROUTE}>Patriot</Link>
-                {user.isAuth ?
-                    <nav>
-                        <Link to={ADMIN_ROUTE}>Admin</Link>
-                        
-                        <button onClick={() => user.clearAuth()}>
-                            Вийти
-                        </button>
-                    </nav>
-                    :
-                    <nav>
-                        <button onClick={() => handleOpenAuth('login')}>
-                            Увійти
-                        </button>
+        <header className={styles.header}>
+            <div className="container">
+                <div className={styles.inner}>
+                    
+                    <Link to={SHOP_ROUTE} className={styles.logo}>
+                        Patriot
+                    </Link>
 
-                        <button onClick={() => handleOpenAuth('register')}>
-                            Зареєструватися
-                        </button>
-                    </nav>
-                }
+                    {user.isAuth ? (
+                        <nav className={styles.nav}>
+                            <Link to={ADMIN_ROUTE} className={styles.link}>
+                                Admin
+                            </Link>
+
+                            <button 
+                                className={styles.button}
+                                onClick={() => user.clearAuth()}
+                            >
+                                Вийти
+                            </button>
+                        </nav>
+                    ) : (
+                        <nav className={styles.nav}>
+                            <button 
+                                className={styles.button}
+                                onClick={() => handleOpenAuth('login')}
+                            >
+                                Увійти
+                            </button>
+
+                            <button 
+                                className={styles.buttonPrimary}
+                                onClick={() => handleOpenAuth('register')}
+                            >
+                                Зареєструватися
+                            </button>
+                        </nav>
+                    )}
+
+                </div>
             </div>
 
             <AuthModal 

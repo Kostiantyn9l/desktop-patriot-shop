@@ -1,0 +1,64 @@
+@use '../../shared/styles/variables' as *;
+
+.header {
+    background-color: #111; // тёмный фон
+    color: white;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: $font-weight-bold;
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.button {
+    background: transparent;
+    border: 1px solid $border-color;
+    color: white;
+    padding: 6px 12px;
+    border-radius: $border-radius-sm;
+
+    &:hover {
+        background: rgba(255,255,255,0.1);
+    }
+}
+
+.buttonPrimary {
+    background: $primary-color;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: $border-radius-sm;
+
+    &:hover {
+        opacity: 0.9;
+    }
+}
