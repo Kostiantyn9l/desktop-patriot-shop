@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createBrand } from "../ai/weaponApi";
+import { createBrand } from "../api/weaponApi";
 
 interface CreateBrandProps {
     show: boolean;

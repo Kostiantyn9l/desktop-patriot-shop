@@ -20,8 +20,8 @@ export const fetchBrands = async () => {
     return data;
 }
 
-export const createWeapon = async (weapon: string) => {
-    const { data } = await $authHost.post('api/weapon/', { weapon });
+export const createWeapon = async (weaponData: FormData) => {
+    const { data } = await $authHost.post('api/weapon/', weaponData);
     return data;
 }
 

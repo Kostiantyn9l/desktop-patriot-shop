@@ -1,7 +1,7 @@
 import type { Weapon } from "../shared/types/types";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchOneWeapon } from "../features/weapon/ai/weaponApi";
+import { fetchOneWeapon } from "../features/weapon/api/weaponApi";
 import { Spinner } from "../shared/ui/Spinner/Spinner";
 
 const WeaponPage = () => {

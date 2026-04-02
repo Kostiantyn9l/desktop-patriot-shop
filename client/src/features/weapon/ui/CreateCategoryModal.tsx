@@ -1,4 +1,4 @@
-import { createType } from "../ai/weaponApi";
+import { createType } from "../api/weaponApi";
 import { useState } from "react";
 
 interface CreateCategoryProps {
