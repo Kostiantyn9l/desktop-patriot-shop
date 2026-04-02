@@ -2,15 +2,17 @@ import { type FC } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import "./Layout.scss";
+import styles from './Layout.module.scss';
 
 const Layout: FC = () => {
     return (
-        <div className="layout">
+        <div className={styles.layout}>
             <Header />
-            <main className="layout__content">
+
+            <main className={styles.content}>
                 <Outlet />
             </main>
+
             <Footer />
         </div>
     );
