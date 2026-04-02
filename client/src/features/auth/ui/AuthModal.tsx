@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import LoginModal from "./LoginModal";
 import RegisterModal from "./RegisterModal";
+import Modal from "../../../shared/ui/modal/Modal";
 
 interface AuthModalProps {
     show: boolean;
@@ -18,21 +19,23 @@ const AuthModal: React.FC<AuthModalProps> = ({ show, mode, onClose }) => {
     if (!show) return null;
 
     return (
-        <div>
-            <div>
-                {isAuthMode === 'login' ? (
-                    <LoginModal
-                        onSwitchToRegister={() => setIsAuthMode('register')}
-                        onClose={onClose}
-                    />
-                ) : (
-                    <RegisterModal
-                        onSwitchToLogin={() => setIsAuthMode('login')}
-                        onClose={onClose}
-                    />
-                )}
-            </div>
-        </div>
+        <Modal
+            open={show}
+            onClose={onClose}
+            title={isAuthMode === 'login' ? 'Вхід' : 'Реєстрація'}
+        >
+            {isAuthMode === 'login' ? (
+                <LoginModal
+                    onSwitchToRegister={() => setIsAuthMode('register')}
+                    onClose={onClose}
+                />
+            ) : (
+                <RegisterModal
+                    onSwitchToLogin={() => setIsAuthMode('login')}
+                    onClose={onClose}
+                />
+            )}
+        </Modal>
     );
 };
 
