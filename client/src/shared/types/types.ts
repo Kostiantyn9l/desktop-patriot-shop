@@ -16,10 +16,10 @@ export interface Weapon {
     img: string;
     typeId: number;
     brandId: number;
-    info: Description[];
+    info: WeaponInfo[];
 }
 
-export interface Description {
+export interface WeaponInfo {
     id: number;
     title: string;
     description: string;
@@ -30,3 +30,10 @@ export interface User {
     email: string;
     role: string;
 }
+
+export type FetchWeaponsParams = {
+    page: number;
+    limit: number;
+    typeId?: number;
+    brandId?: number;
+};
