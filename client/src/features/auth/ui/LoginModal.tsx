@@ -3,6 +3,7 @@ import { useStore } from "../../../shared/hooks/useStore";
 import { login } from "../api/authAPI";
 import { observer } from "mobx-react-lite";
 import axios from "axios";
+import styles from "./AuthModal.module.scss"
 
 interface LoginModalProps {
     onSwitchToRegister: () => void;
@@ -34,15 +35,13 @@ const LoginModal: React.FC<LoginModalProps> = observer(({ onSwitchToRegister, on
 
     return (
         <div>
-            <h2>Вхід</h2>
-
-            <form className="auth-form" onSubmit={handleSubmit}>
+            <form className={styles["auth-form"]} onSubmit={handleSubmit}>
                 <label>
                     <span>Email</span>
                     <input
                         name="email"
                         type="email"
-                        placeholder="Введіть email"
+                        placeholder="email@example.com"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
@@ -53,7 +52,7 @@ const LoginModal: React.FC<LoginModalProps> = observer(({ onSwitchToRegister, on
                     <input
                         name="password"
                         type="password"
-                        placeholder="Введіть пароль"
+                        placeholder="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
@@ -62,7 +61,15 @@ const LoginModal: React.FC<LoginModalProps> = observer(({ onSwitchToRegister, on
                 <button type="submit">Увійти</button>
             </form>
 
-            <p>Немає аккаунта? <button onClick={onSwitchToRegister}>Зареєструватися</button></p>
+            <div className={styles["switch-container"]}>
+                <span>Немає аккаунта?</span>
+                <button 
+                    className={styles["switch-button"]} 
+                    onClick={onSwitchToRegister}
+                >
+                    Зареєструватися
+                </button>
+            </div>
         </div>
     );
 });

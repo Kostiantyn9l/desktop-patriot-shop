@@ -1,0 +1,72 @@
+@use '@/shared/styles/variables' as *;
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 16px 20px;
+  background-color: $background-color;
+  border-radius: 16px;
+  min-width: 320px;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: $text-color;
+
+    span {
+      margin-bottom: 6px;
+    }
+
+    input {
+      padding: 12px 14px;
+      border: 1px solid $border-color;
+      border-radius: 12px;
+      font-size: 14px;
+      transition: border 0.2s, box-shadow 0.2s;
+
+      &:focus {
+        border-color: #FFC107;
+        outline: none;
+      }
+    }
+  }
+
+  button[type="submit"] {
+    margin-top: 12px;
+    padding: 12px 18px;
+    background-color: #111;
+    color: white;
+    font-weight: $font-weight-bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background-color: #333;
+    }
+  }
+}
+
+.switch-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+
+  .switch-button {
+    font-size: 14px;
+    color: #FFC107;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 4px;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}

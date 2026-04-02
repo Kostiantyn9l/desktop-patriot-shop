@@ -3,6 +3,7 @@ import { registration } from "../api/authAPI";
 import { useStore } from "../../../shared/hooks/useStore";
 import { observer } from "mobx-react-lite";
 import axios from "axios";
+import styles from "./AuthModal.module.scss"
 
 interface RegisterModalProps {
     onSwitchToLogin: () => void;
@@ -37,15 +38,13 @@ const RegisterModal: React.FC<RegisterModalProps> = observer(({ onSwitchToLogin,
 
     return (
         <div>
-            <h2>Реєстрація</h2>
-
-            <form className="auth-form" onSubmit={handleSubmit}>
+            <form className={styles["auth-form"]} onSubmit={handleSubmit}>
                 <label>
                     <span>Ім'я користувача</span>
                     <input
                         name="username"
                         type="text"
-                        placeholder="Введіть ім'я"
+                        placeholder="Данііл Волков"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
@@ -56,7 +55,7 @@ const RegisterModal: React.FC<RegisterModalProps> = observer(({ onSwitchToLogin,
                     <input
                         name="email"
                         type="email"
-                        placeholder="Введіть email"
+                        placeholder="email@example.com"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
@@ -67,7 +66,7 @@ const RegisterModal: React.FC<RegisterModalProps> = observer(({ onSwitchToLogin,
                     <input
                         name="password"
                         type="password"
-                        placeholder="Введіть пароль"
+                        placeholder="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
@@ -76,7 +75,15 @@ const RegisterModal: React.FC<RegisterModalProps> = observer(({ onSwitchToLogin,
                 <button type="submit">Зареєструватися</button>
             </form>
 
-            <p>Вже є аккаунт? <button onClick={onSwitchToLogin}>Увійти</button></p>
+            <div className={styles["switch-container"]}>
+                <span>Вже є аккаунт?</span>
+                <button 
+                    className={styles["switch-button"]} 
+                    onClick={onSwitchToLogin}
+                >
+                    Увійти
+                </button>
+            </div>
         </div>
     );
 });
