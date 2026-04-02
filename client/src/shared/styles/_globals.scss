@@ -1,0 +1,41 @@
+@use './variables' as *;
+
+// Скидання стилів
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $text-color;
+  background-color: $background-color;
+}
+
+// Посилання
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+// Зображення
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Списки
+ul, ol {
+  list-style: none;
+}
+
+// Кнопки
+button {
+  font-family: $font-family-base;
+  cursor: pointer;
+}

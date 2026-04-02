@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import UserStore from '../entities/user/model/UserStore.ts';
 import WeaponStore from '../entities/weapon/model/WeaponStore.ts';
+import '../shared/styles/index.scss'
 
 interface ContextValue {
   user: UserStore;
