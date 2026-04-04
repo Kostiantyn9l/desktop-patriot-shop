@@ -1,0 +1,121 @@
+@use '@/shared/styles/variables' as *;
+
+.weaponPage {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .top {
+        display: flex;
+        gap: 24px;
+
+        .left, .right { flex: 1; }
+
+        .left {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .imageWrapper {
+                width: 100%;
+                max-width: 400px;
+                aspect-ratio: 1/1;
+                background: white;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img { width: 100%; height: 100%; object-fit: contain; }
+            }
+        }
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            .name { font-size: 28px; font-weight: $font-weight-bold; }
+            .rating { font-size: 16px; color: #555; }
+
+            .purchase {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+
+                .price { font-size: 24px; font-weight: $font-weight-bold; color: #111; }
+
+                .addToCart {
+                    padding: 12px 20px;
+                    font-size: 16px;
+                    font-weight: $font-weight-bold;
+                    border-radius: 6px;
+                    border: none;
+                    background: #3e9f55;
+                    color: #fff;
+                    cursor: pointer;
+                    transition: 0.2s;
+
+                    &:hover { background: #a1ab42; }
+                    &:active { transform: scale(0.98); }
+                }
+            }
+        }
+    }
+
+    .info {
+        display: flex;
+        gap: 24px;
+
+        .infoTitle {
+            font-size: 20px;
+            font-weight: $font-weight-bold;
+        }
+
+        .infoGrid {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+
+            .infoItem {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: relative;
+                padding: 0 8px;
+
+                &::before {
+                content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 8px;
+                    right: 8px;
+                    height: 1px;
+                    background: #ccc;
+                    z-index: 0;
+                }
+
+                .infoName,
+                .infoDesc {
+                    position: relative;
+                    z-index: 1;
+                }
+
+                .infoName {
+                    font-weight: $font-weight-bold;
+                }
+
+                .infoDesc {
+                    color: #555;
+                }
+            }
+        }
+    }
+
+  @media (max-width: 768px) {
+    .top { flex-direction: column; }
+    .infoGrid .infoItem { flex-direction: column; }
+    .infoGrid .infoItem .infoName::after { display: none; }
+  }
+}
