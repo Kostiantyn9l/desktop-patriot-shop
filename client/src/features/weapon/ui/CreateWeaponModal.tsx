@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useStore } from "../../../shared/hooks/useStore";
 import { fetchBrands, fetchTypes, createWeapon } from "../api/weaponApi";
 import { type WeaponInfo } from "../../../shared/types/types";
+import Modal from "../../../shared/ui/modal/Modal";
+import styles from "./CreateModal.module.scss"
 
 interface CreateWeaponProps {
     show: boolean;
@@ -98,92 +100,95 @@ const CreateWeapon: React.FC<CreateWeaponProps> = ({show, onClose}) => {
     };
 
     return (
-        <section>
-            <h2>Додайте зброю</h2>
-            {/* Додавання категорії / бренду */}
-            <form onSubmit={handleSubmit}>
-                {/* Категорія */}
-                <select 
+    <Modal open={show} onClose={onClose} title="Додати зброю">
+        <form className={styles.form} onSubmit={handleSubmit}>
+
+            <div className={styles.fieldsRow}>
+                <select
                     value={selectedTypeId ?? ""}
                     onChange={(e) => setSelectedTypeId(Number(e.target.value))}
                 >
                     <option value="">Оберіть категорію</option>
                     {weapon.types.map(type => (
-                        <option 
-                            key={type.id}
-                            value={type.id}
-                        >
+                        <option key={type.id} value={type.id}>
                             {type.name}
                         </option>
                     ))}
                 </select>
 
-                {/* Бренд */}
                 <select
                     value={selectedBrandId ?? ""}
                     onChange={(e) => setSelectedBrandId(Number(e.target.value))}
                 >
                     <option value="">Оберіть бренд</option>
                     {weapon.brands.map(brand => (
-                        <option 
-                            key={brand.id}
-                            value={brand.id}
-                        >
+                        <option key={brand.id} value={brand.id}>
                             {brand.name}
                         </option>
                     ))}
                 </select>
-                
-                {/* INPUTS */}
-                <input 
-                    type="text" 
-                    placeholder="Назва зброї"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)} 
-                />
-                <input 
-                    type="number" 
-                    placeholder="Ціна зброї"
-                    value={price || ""}
-                    onChange={(e) => setPrice(Number(e.target.value))}
-                />
-                <input 
-                    type="file"
-                    onChange={(e) => setFile(e.target.files?.[0] || null)} 
-                />
+            </div>
 
-                {/* Характеристики */}
-                <button type="button" onClick={addInfo}>
+            <input
+                type="text"
+                placeholder="Назва зброї"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+            />
+            <input
+                type="number"
+                placeholder="Ціна зброї"
+                value={price || ""}
+                onChange={(e) => setPrice(Number(e.target.value))}
+            />
+            <div className={styles.fileUpload}>
+            <label className={styles.fileLabel}>
+                Обрати файл
+                <input
+                    type="file"
+                    onChange={(e) => setFile(e.target.files?.[0] || null)}
+                />
+            </label>
+
+                {file && <span className={styles.fileName}>{file.name}</span>}
+            </div>
+
+            <div className={styles.infoBlock}>
+                <button
+                    type="button"
+                    className={styles.addInfoBtn}
+                    onClick={addInfo}
+                >
                     Додайте характеристику
                 </button>
 
                 {info.map(i => (
-                    <div key={i.id}>
-                        <input 
-                            type="text" 
-                            placeholder="Назва характеристики" 
+                    <div key={i.id} className={styles.infoItem}>
+                        <input
+                            type="text"
+                            placeholder="Назва"
                             value={i.title}
                             onChange={(e) => changeInfo("title", e.target.value, i.id)}
                         />
-                        <input 
-                            type="text" 
-                            placeholder="Опис характеристики" 
+                        <input
+                            type="text"
+                            placeholder="Опис"
                             value={i.description}
                             onChange={(e) => changeInfo("description", e.target.value, i.id)}
                         />
-                        <button
-                            type={"button"}
-                            onClick={() => removeInfo(i.id)}
-                        >
-                            Видалити
+                        <button type="button" onClick={() => removeInfo(i.id)}>
+                            ✕
                         </button>
                     </div>
                 ))}
+            </div>
 
+            <div className={styles.actions}>
                 <button type="button" onClick={onClose}>Закрити</button>
                 <button type="submit">Додати</button>
-            </form>
-        </section>
+            </div>
+        </form>
+    </Modal>
     );
 }
 

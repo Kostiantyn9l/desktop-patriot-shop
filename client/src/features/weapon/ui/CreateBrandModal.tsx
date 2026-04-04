@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { createBrand } from "../api/weaponApi";
+import Modal from "../../../shared/ui/modal/Modal";
+import styles from "./CreateModal.module.scss"
 
 interface CreateBrandProps {
     show: boolean;
@@ -22,25 +24,21 @@ const CreateBrand: React.FC<CreateBrandProps> = ({show, onClose}) => {
     }
 
     return (
-        <section>
-            <div>
-                <div>
-                    <h2>Додайте бренд</h2>
-                </div>
-                <form onSubmit={handleSubmit}>
-                    <input 
-                        type="text" 
-                        placeholder="Назва бренду"
-                        value={brand}
-                        onChange={(e) => setBrand(e.target.value)} 
-                    />
+        <Modal open={show} onClose={onClose} title="Додати бренд">
+            <form className={styles.form} onSubmit={handleSubmit}>
+                <input 
+                    type="text" 
+                    placeholder="ARM Defence"
+                    value={brand}
+                    onChange={(e) => setBrand(e.target.value)} 
+                />
+
+                <div className={styles.actions}>
                     <button type="submit">Додати</button>
-                </form>
-            </div>
-            <div>
-                <button onClick={onClose}>Закрити</button>
-            </div>
-        </section>
+                    <button type="button" onClick={onClose}>Закрити</button>
+                </div>
+            </form>
+        </Modal>
     );
 }
 

@@ -3,17 +3,17 @@
 .container {
   max-width: $container-max-width;
   margin: 0 auto;
-  padding: 0 $spacing-md;
+  padding: 0;
 }
 
 .row {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 -$spacing-md/2;
+  margin: 0 ;
 }
 
 .col {
-  padding: 0 $spacing-md/2;
+  padding: 0;
   flex: 1;
 }
 

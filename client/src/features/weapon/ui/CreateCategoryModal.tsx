@@ -1,5 +1,7 @@
 import { createType } from "../api/weaponApi";
 import { useState } from "react";
+import Modal from "../../../shared/ui/modal/Modal";
+import styles from "./CreateModal.module.scss"
 
 interface CreateCategoryProps {
     show: boolean;
@@ -22,25 +24,21 @@ const CreateCategory: React.FC<CreateCategoryProps> = ({show, onClose}) => {
     }
 
     return (
-        <section>
-            <div>
-                <div>
-                    <h2>Додайте категорію</h2>
-                </div>
-                <form onSubmit={handleSubmit}>
-                    <input 
-                        type="text" 
-                        placeholder="Назва категорії" 
-                        value={type}
-                        onChange={(e) => setType(e.target.value)}
-                    />
+        <Modal open={show} onClose={onClose} title="Додати категорію">
+            <form className={styles.form} onSubmit={handleSubmit}>
+                <input 
+                    type="text" 
+                    placeholder="Вогнепальна Зброя"
+                    value={type}
+                    onChange={(e) => setType(e.target.value)}
+                />
+
+                <div className={styles.actions}>
                     <button type="submit">Додати</button>
-                </form>
-            </div>
-            <div>
-                <button onClick={onClose}>Закрити</button>
-            </div>
-        </section>
+                    <button type="button" onClick={onClose}>Закрити</button>
+                </div>
+            </form>
+        </Modal>
     );
 }
 
