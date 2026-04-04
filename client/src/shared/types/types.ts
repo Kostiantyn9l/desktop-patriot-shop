@@ -37,3 +37,14 @@ export type FetchWeaponsParams = {
     typeId?: number;
     brandId?: number;
 };
+
+export interface BasketWeapon {
+    id: number;
+    quantity: number;
+    weapon: {
+        id: number;
+        name: string;
+        price: number;
+        img: string;
+    };
+}
