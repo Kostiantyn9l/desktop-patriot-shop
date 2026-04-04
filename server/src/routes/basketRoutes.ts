@@ -1,0 +1,12 @@
+import express from "express";
+import basketController from "../controllers/basketController.js";
+import authMiddleware from "../middleware/authMiddleware.js";
+
+const router = express.Router();
+
+router.post('/add', authMiddleware, basketController.add);
+router.get('/', authMiddleware, basketController.get);
+router.put('/:weaponId', authMiddleware, basketController.removeOne);
+router.delete('/:weaponId', authMiddleware, basketController.remove);
+
+export default router;
