@@ -9,7 +9,7 @@ export default class WeaponStore {
     private _selectedBrand: Brand | null = null;
     private _page: number = 1;
     private _totalCount: number = 0;
-    private _limit: number = 2;
+    private _limit: number = 12;
 
     constructor() {
         makeAutoObservable(this);

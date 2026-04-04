@@ -30,7 +30,7 @@ export const fetchWeapons = async (
     typeId?: number, 
     brandId?: number, 
     page: number = 1, 
-    limit: number = 3, 
+    limit: number = 12, 
 ) => {
     const params: FetchWeaponsParams = { page, limit }
 
