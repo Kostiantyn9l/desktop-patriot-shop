@@ -1,0 +1,39 @@
+.brandSidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    margin-bottom: 8px;
+  }
+
+  &__button {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    text-align: left;
+    border: none;
+    border-radius: 12px;
+    background-color: transparent;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover {
+      background-color: #FFC107;
+      color: #111;
+    }
+  }
+
+  &__buttonActive {
+    background-color: #FFB300;
+    font-weight: bold;
+    color: #111;
+  }
+}

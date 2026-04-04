@@ -1,0 +1,39 @@
+.categorySidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    margin-bottom: 8px;
+  }
+
+  &__button {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    text-align: left;
+    border: none;
+    border-radius: 12px;
+    background-color: transparent;
+    color: #555;
+    font-weight: normal;
+    cursor: pointer;
+    transition: color 0.2s, font-weight 0.2s;
+
+    &:hover {
+      color: #111;
+      font-weight: 600;
+    }
+  }
+
+  &__buttonActive {
+    color: #111;
+    font-weight: 700;
+  }
+}
