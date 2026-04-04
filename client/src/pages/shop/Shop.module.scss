@@ -1,0 +1,45 @@
+@use '@/shared/styles/variables' as *;
+
+.shop {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0px 24px 0px;
+
+  &__top {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  &__sidebars {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 220px;
+    border-right: 1px solid #ccc;
+
+    position: sticky;
+    top: 24px;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    padding-right: 8px;
+    align-self: flex-start;
+  }
+  &__sidebars > * {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  @media (min-width: 1024px) {
+    position: static;
+    flex-direction: row;
+    position: static;
+  }
+}

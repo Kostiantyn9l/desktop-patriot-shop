@@ -1,9 +1,9 @@
 import type { ComponentType } from "react"
-import Admin from "../pages/Admin"
-import Shop from "../pages/Shop"
+import Admin from "../pages/admin/Admin"
+import Shop from "../pages/shop/Shop"
 import { ADMIN_ROUTE, NOT_FOUND_ROUTE, SHOP_ROUTE, WEAPON_PAGE_ROUTE } from "../shared/lib/consts"
-import NotFound from "../pages/NotFound"
-import WeaponPage from "../pages/WeaponPage"
+import NotFound from "../pages/not_found/NotFound"
+import WeaponPage from "../pages/weapon_page/WeaponPage"
 
 interface AppRoute {
     path: string,
