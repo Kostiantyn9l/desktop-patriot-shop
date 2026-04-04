@@ -5,12 +5,14 @@ import { ADMIN_ROUTE, SHOP_ROUTE } from "../../shared/lib/consts";
 import AuthModal from "../../features/auth/ui/AuthModal";
 import { useStore } from "../../shared/hooks/useStore";
 import styles from "./Header.module.scss"
+import BasketModal from "../../entities/basket/ui/BasketModal"
 
 const Header: FC = observer(() => {
     const { user } = useStore();
     
     const [isAuthOpen, setIsAuthOpen] = useState(false);
     const [authMode, setIsAuthMode] = useState<'login' | 'register'>('login');
+    const [isBasketOpen, setIsBasketOpen] = useState(false);
 
     const handleOpenAuth = (mode: 'login' | 'register') => {
         setIsAuthMode(mode);
@@ -31,6 +33,12 @@ const Header: FC = observer(() => {
                             <Link to={ADMIN_ROUTE} className={styles.link}>
                                 Admin
                             </Link>
+
+                            <button
+                                onClick={() => setIsBasketOpen(true)}
+                            >
+                                Кошик
+                            </button>
 
                             <button 
                                 className={styles.button}
@@ -64,6 +72,10 @@ const Header: FC = observer(() => {
                 show={isAuthOpen} 
                 mode={authMode} 
                 onClose={() => setIsAuthOpen(false)} 
+            />
+            <BasketModal
+                show={isBasketOpen}
+                onClose={() => setIsBasketOpen(false)}
             />
         </header>
     );
