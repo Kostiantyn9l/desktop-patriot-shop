@@ -47,6 +47,7 @@ model BasketWeapon {
   id       Int @id @default(autoincrement())
   basketId Int
   weaponId Int
+  quantity Int @default(1)
 
   basket Basket @relation(fields: [basketId], references: [id])
   weapon Weapon @relation(fields: [weaponId], references: [id])
@@ -54,6 +55,7 @@ model BasketWeapon {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  @@unique([basketId, weaponId])
   @@map("basket_weapons")
 }
 
