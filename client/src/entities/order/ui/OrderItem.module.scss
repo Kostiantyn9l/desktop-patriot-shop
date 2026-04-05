@@ -1,0 +1,56 @@
+@use '@/shared/styles/variables' as *;
+
+.orderItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  padding: 16px 20px;
+  border: 1px solid $border-color;
+  border-radius: 12px;
+  background-color: $background-color;
+
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+
+  h3 {
+    font-size: 16px;
+    font-weight: $font-weight-bold;
+  }
+
+  p {
+    font-size: 14px;
+    opacity: 0.7;
+    margin: 0;
+  }
+}
+
+.items {
+  margin-top: 8px;
+  padding-left: 8px;
+  font-size: 14px;
+
+  div {
+    margin-bottom: 4px;
+  }
+
+  strong {
+    display: block;
+    margin-bottom: 4px;
+  }
+}
+
+/* форма подтверждения для админа */
+.confirmForm {
+  margin-top: 12px;
+}
