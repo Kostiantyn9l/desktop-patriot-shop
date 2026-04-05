@@ -1,7 +1,7 @@
 @use '../../shared/styles/variables' as *;
 
 .header {
-    background-color: #111; // тёмный фон
+    background-color: #111;
     color: white;
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
@@ -14,13 +14,17 @@
 }
 
 .logo {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: $font-weight-bold;
     color: white;
     text-decoration: none;
+    padding: 6px 12px;
+    border-radius: $border-radius-sm;
+    transition: background 0.2s, opacity 0.2s;
 
     &:hover {
-        opacity: 0.8;
+        background: rgba(255,255,255,0.05);
+        opacity: 0.9;
     }
 }
 
@@ -28,23 +32,33 @@
     display: flex;
     align-items: center;
     gap: $spacing-md;
-}
 
-.link {
-    color: white;
-    text-decoration: none;
+    a,
+    button {
+        font-size: 16px;
+        padding: 8px 16px;
+        border-radius: $border-radius-sm;
+        transition: all 0.2s;
+        cursor: pointer;
+    }
+
+    .link {
+        color: white;
+        text-decoration: none;
+        border: 1px solid rgba(255,255,255,0.3);
+        background: transparent;
 
     &:hover {
-        text-decoration: underline;
+        background: rgba(255,255,255,0.1);
+        text-decoration: none;
     }
+}
 }
 
 .button {
     background: transparent;
     border: 1px solid $border-color;
     color: white;
-    padding: 6px 12px;
-    border-radius: $border-radius-sm;
 
     &:hover {
         background: rgba(255,255,255,0.1);
@@ -52,13 +66,21 @@
 }
 
 .buttonPrimary {
-    background: $primary-color;
-    border: none;
-    color: white;
-    padding: 6px 12px;
-    border-radius: $border-radius-sm;
+        background: white;
+        color: black;
+        border: 1px solid #ccc;
 
     &:hover {
-        opacity: 0.9;
+        background: #f0f0f0e3;
+    }
+}
+
+.buttonEscape {
+        background: #dbac1f;
+        color: white;
+        border: 1px solid #cccccc6b;
+
+    &:hover {
+        background: #c29c05;
     }
 }
