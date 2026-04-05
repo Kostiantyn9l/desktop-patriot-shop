@@ -1,6 +1,7 @@
 import { type FC } from "react";
 import { useStore } from "../../../shared/hooks/useStore";
 import { type BasketWeapon } from "../../../shared/types/types";
+import styles from "./BasketItem.module.scss"
 
 interface BasketItemProps {
     item: BasketWeapon;
@@ -22,17 +23,28 @@ const BasketItem: FC<BasketItemProps> = ({ item }) => {
     };
 
     return (
-        <div>
+        <div className={styles.basketItem}>
             <img
+                className={styles.image}
                 src={import.meta.env.VITE_REACT_APP_API_URL + item.weapon.img}
             />
-            <span>{item.weapon.name}</span>
-            <span> x {item.quantity}</span>
-            <span>₴{item.weapon.price * item.quantity}</span>
-            <div>
-                <button onClick={handleAdd}>+</button>
-                <button onClick={handleRemoveOne}>-</button>
-                <button onClick={handleRemoveAll}>Видалити</button>
+
+            <div className={styles.info}>
+                <span className={styles.name}>{item.weapon.name}</span>
+
+                <div className={styles.meta}>
+                <span>x {item.quantity}</span>
+                <span>₴{item.weapon.price * item.quantity}</span>
+                </div>
+            </div>
+
+            <div className={styles.actions}>
+                <button className={styles.iconButton} onClick={handleAdd}>+</button>
+                <button className={styles.iconButton} onClick={handleRemoveOne}>-</button>
+
+                <button className={styles.removeButton} onClick={handleRemoveAll}>
+                Видалити
+                </button>
             </div>
         </div>
     );
