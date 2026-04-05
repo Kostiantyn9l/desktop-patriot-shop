@@ -13,6 +13,12 @@ enum Role {
   MODERATOR
 }
 
+enum OrderStatus {
+  PENDING
+  COMPLETED
+  CANCELLED
+}
+
 model User {
   id       Int    @id @default(autoincrement())
   name     String
@@ -22,6 +28,7 @@ model User {
 
   basket  Basket?
   ratings Rating[]
+  orders Order[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -75,6 +82,7 @@ model Weapon {
   info    WeaponInfo[]
   ratings Rating[]
   baskets BasketWeapon[]
+  orderItems OrderItem[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -134,4 +142,37 @@ model Brand {
   updatedAt DateTime @updatedAt
 
   @@map("brands")
+}
+
+model Order {
+  id      Int         @id @default(autoincrement())
+  userId  Int
+  code    String      // код подтверждения
+  status  OrderStatus @default(PENDING)
+  total   Float
+
+  user User @relation(fields: [userId], references: [id])
+
+  items OrderItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id       Int @id @default(autoincrement())
+  orderId  Int
+  weaponId Int
+  quantity Int
+  price    Float
+
+  order  Order  @relation(fields: [orderId], references: [id])
+  weapon Weapon @relation(fields: [weaponId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("order_items")
 }
