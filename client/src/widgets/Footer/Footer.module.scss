@@ -1,0 +1,84 @@
+@use '@/shared/styles/variables' as *;
+
+.footerWrapper {
+  width: 100%;
+  background-color: #111;
+  color: #f5f5f5;
+  padding: 32px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.footer {
+  width: 100%;
+  max-width: $container-max-width;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  > div:first-child {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 24px;
+
+    div {
+      flex: 1 1 180px;
+      min-width: 180px;
+
+      h3, h4 {
+        margin-bottom: 8px;
+        color: #fff;
+      }
+
+      p {
+        margin: 0;
+        opacity: 0.7;
+        color: #ddd;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        a {
+          color: #f5f5f5;
+          text-decoration: none;
+          transition: color 0.2s;
+
+          &:hover {
+            color: #FFC107;
+          }
+        }
+      }
+    }
+
+    .footer__social {
+      ul {
+        flex-direction: row;
+        gap: 12px;
+
+        li {
+          list-style: none;
+
+          a {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  .footer__bottom {
+    border-top: 1px solid #333;
+    padding-top: 16px;
+    text-align: center;
+    opacity: 0.6;
+    font-size: 13px;
+    color: #ccc;
+  }
+}
