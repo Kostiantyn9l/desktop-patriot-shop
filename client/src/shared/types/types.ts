@@ -48,3 +48,25 @@ export interface BasketWeapon {
         img: string;
     };
 }
+
+export type OrderStatus = 'PENDING' | 'COMPLETED' | 'CANCELLED';
+
+export interface OrderItem {
+    id: number;
+    quantity: number;
+    price: number;
+    weapon: {
+        id: number;
+        name: string;
+        price: number;
+    };
+}
+
+export interface Order {
+    id: number;
+    code: string;
+    status: OrderStatus;
+    total: number;
+    createdAt: string;
+    items: OrderItem[];
+}
