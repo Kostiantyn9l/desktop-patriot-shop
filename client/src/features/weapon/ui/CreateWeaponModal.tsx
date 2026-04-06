@@ -184,8 +184,8 @@ const CreateWeapon: React.FC<CreateWeaponProps> = ({show, onClose}) => {
             </div>
 
             <div className={styles.actions}>
-                <button type="button" onClick={onClose}>Закрити</button>
                 <button type="submit">Додати</button>
+                <button type="button" onClick={onClose}>Закрити</button>
             </div>
         </form>
     </Modal>
