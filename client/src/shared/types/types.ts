@@ -69,4 +69,8 @@ export interface Order {
     total: number;
     createdAt: string;
     items: OrderItem[];
+    user: {
+        name: string;
+        email: string;
+    };
 }
