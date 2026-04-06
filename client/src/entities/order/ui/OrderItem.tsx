@@ -17,8 +17,15 @@ const OrderItem: FC<Props> = ({ order }) => {
                 <h3>Замовлення #{order.id}</h3>
                 <p>Статус: {order.status}</p>
                 <p>Сума: {order.total}₴</p>
-                <p>Код: {order.code}</p>
             </div>
+
+            {order.user && (
+                <div className={styles.user}>
+                    <strong>Користувач:</strong>
+                    <p>{order.user.name}</p>
+                    <p>{order.user.email}</p>
+                </div>
+            )}
 
             <div className={styles.items}>
                 <strong>Товари:</strong>
@@ -31,7 +38,7 @@ const OrderItem: FC<Props> = ({ order }) => {
 
             {user.user?.role === "ADMIN" && order.status === "PENDING" && (
                 <div className={styles.confirmForm}>
-                <ConfirmOrderForm orderId={order.id} />
+                    <ConfirmOrderForm orderId={order.id} />
                 </div>
             )}
         </div>

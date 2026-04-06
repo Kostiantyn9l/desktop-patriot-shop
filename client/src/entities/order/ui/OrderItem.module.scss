@@ -35,6 +35,29 @@
   }
 }
 
+.user {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+  padding: 8px 12px;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  background-color: lighten($background-color, 3%);
+
+  strong {
+    font-weight: $font-weight-bold;
+    font-size: 14px;
+  }
+
+  p {
+    font-size: 13px;
+    margin: 0;
+    opacity: 0.8;
+    word-break: break-word;
+  }
+}
+
 .items {
   margin-top: 8px;
   padding-left: 8px;
@@ -50,7 +73,6 @@
   }
 }
 
-/* форма подтверждения для админа */
 .confirmForm {
   margin-top: 12px;
 }
