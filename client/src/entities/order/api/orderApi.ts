@@ -20,3 +20,8 @@ export const confirmOrder = async (orderId: number, code: string) => {
     const { data } = await $authHost.post('/api/order/confirm', { orderId, code });
     return data;
 };
+
+export const cancelOrder = async (orderId: number) => {
+    const { data } = await $authHost.post('/api/order/cancel', { orderId });
+    return data;
+};

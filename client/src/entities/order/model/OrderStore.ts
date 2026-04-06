@@ -51,6 +51,18 @@ export default class OrderStore {
         }
     };
 
+    fetchAllOrders = async () => {
+        try {
+            const data = await api.getAllOrders();
+
+            runInAction(() => {
+                this.setOrders(data);
+            });
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
     confirmOrder = async (orderId: number, code: string) => {
         try {
             await api.confirmOrder(orderId, code);
@@ -59,4 +71,13 @@ export default class OrderStore {
             console.error(e);
         }
     };
+
+    cancelOrder = async (orderId: number) => {
+        try {
+            await api.cancelOrder(orderId);
+            await this.fetchOrders();
+        } catch (e) {
+            console.error(e);
+        }
+    }
 }
