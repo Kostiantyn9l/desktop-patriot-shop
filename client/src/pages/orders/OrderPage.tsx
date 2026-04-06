@@ -7,6 +7,10 @@ import styles from "./OrderPage.module.scss";
 const OrdersPage = observer(() => {
     const { order } = useStore();
 
+    const pendingOrders = order.orders.filter(o => o.status === "PENDING");
+    const confirmedOrders = order.orders.filter(o => o.status === "COMPLETED");
+    const cancelledOrders = order.orders.filter(o => o.status === "CANCELLED");
+
     useEffect(() => {
         order.fetchOrders();
 
@@ -20,8 +24,22 @@ const OrdersPage = observer(() => {
             {order.orders.length === 0 ? (
                 <p className={styles.empty}>Замовлень немає</p>
             ) : (
-                <div className={styles.listWrapper}>
-                <OrderList orders={order.orders} />
+
+                <div className={styles.ordersWrapper}>
+                    <div className={styles.ordersColumn}>
+                        <h2>Очікують підтвердження</h2>
+                        <OrderList orders={pendingOrders} />
+                    </div>
+
+                    <div className={styles.ordersColumn}>
+                        <h2>Підтверджені</h2>
+                        <OrderList orders={confirmedOrders} />
+                    </div>
+
+                    <div className={styles.ordersColumn}>
+                        <h2>Скасовані</h2>
+                        <OrderList orders={cancelledOrders} />
+                    </div>
                 </div>
             )}
         </div>

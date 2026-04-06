@@ -14,8 +14,12 @@ const Admin = observer(() => {
     const [brandShow, setBrandShow] = useState(false);
     const [weaponShow, setWeaponShow] = useState(false);
 
+    const pendingOrders = order.orders.filter(o => o.status === "PENDING");
+    const confirmedOrders = order.orders.filter(o => o.status === "COMPLETED");
+    const cancelledOrders = order.orders.filter(o => o.status === "CANCELLED");
+
     useEffect(() => {
-        order.fetchOrders();
+        order.fetchAllOrders();
         
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -33,10 +37,21 @@ const Admin = observer(() => {
                     <button onClick={() => setWeaponShow(true)}>Додати Озброєння</button>
                 </div>
 
-                <div>
-                    <h1>Панель замовлень</h1>
+                <div className={styles.ordersWrapper}>
+                    <div className={styles.ordersColumn}>
+                        <h2>Очікують підтвердження</h2>
+                        <OrderList orders={pendingOrders} />
+                    </div>
 
-                    <OrderList orders={order.orders} />
+                    <div className={styles.ordersColumn}>
+                        <h2>Історія підтверджених замовлень</h2>
+                        <OrderList orders={confirmedOrders} />
+                    </div>
+
+                    <div className={styles.ordersColumn}>
+                        <h2>Історія скасованих замовлень</h2>
+                        <OrderList orders={cancelledOrders} />
+                    </div>
                 </div>
 
                 <CreateCategory show={categoryShow} onClose={() => setCategoryShow(false)}/>

@@ -26,8 +26,25 @@
   text-align: center;
 }
 
-.listWrapper {
+.ordersWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.ordersColumn {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
+
+  h2 {
+    font-size: 16px;
+    font-weight: $font-weight-bold;
+  }
+}
+
+@media (max-width: 900px) {
+  .ordersWrapper {
+    grid-template-columns: 1fr;
+  }
 }
