@@ -147,7 +147,7 @@ model Brand {
 model Order {
   id      Int         @id @default(autoincrement())
   userId  Int
-  code    String      // код подтверждения
+  code    String
   status  OrderStatus @default(PENDING)
   total   Float
 

@@ -78,12 +78,8 @@ class OrderController {
     async getAll(req: AuthRequest, res: Response) {
         const orders = await prisma.order.findMany({
             include: {
-                user: true,
-                items: {
-                    include: {
-                        weapon: true
-                    }
-                }
+                user: { select: { name: true, email: true } },
+                items: { include: { weapon: true } }
             },
             orderBy: { createdAt: "desc" }
         });
@@ -117,6 +113,32 @@ class OrderController {
 
         return res.json({
             message: "Замовлення підтверджено",
+            order: updated
+        });
+    }
+
+    async cancel(req: AuthRequest, res: Response) {
+        const { orderId } = req.body;
+
+        const order = await prisma.order.findUnique({
+            where: { id: orderId }
+        });
+
+        if (!order) {
+            return res.status(404).json({ message: "Замовлення не знайдено" });
+        }
+
+        if (order.status === "CANCELLED") {
+            return res.status(400).json({ message: "Замовлення вже скасовано" });
+        }
+
+        const updated = await prisma.order.update({
+            where: { id: orderId },
+            data: { status: "CANCELLED" }
+        });
+
+        return res.json({
+            message: "Замовлення скасовано",
             order: updated
         });
     }
