@@ -1,5 +1,5 @@
 import express from "express";
-import basketController from "../controllers/basketController.js";
+import basketController from "../modules/basket/basketController.js";
 import authMiddleware from "../common/middleware/authMiddleware.js";
 
 const router = express.Router();
