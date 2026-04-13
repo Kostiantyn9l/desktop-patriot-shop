@@ -1,11 +1,11 @@
 import {Router} from "express";
 
-import authRouter from "./authRouter.js";
-import weaponRouter from "./weaponRouter.js"
-import typeRouter from "./typeRouter.js";
-import brandRouter from "./brandRouter.js";
-import basketRouter from "./basketRoutes.js";
-import orderRouter from "./orderRouter.js";
+import authRouter from "../modules/auth/authRouter.js";
+import weaponRouter from "../modules/weapon/weaponRouter.js";
+import typeRouter from "../modules/type/typeRouter.js";
+import brandRouter from "../modules/brand/brandRouter.js";
+import basketRouter from "../modules/basket/basketRoutes.js";
+import orderRouter from "../modules/order/orderRouter.js";
 
 const rootRouter: Router = Router();
 

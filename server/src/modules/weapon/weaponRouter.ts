@@ -1,6 +1,6 @@
 import express from "express";
-import weaponController from "../modules/weapon/weaponController.js";
-import checkRoleMiddleware from "../common/middleware/checkRoleMiddleware.js";
+import weaponController from "./weaponController.js";
+import checkRoleMiddleware from "../../common/middleware/checkRoleMiddleware.js";
 
 const router = express.Router();
 

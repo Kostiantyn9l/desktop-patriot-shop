@@ -1,7 +1,7 @@
 import express from "express";
-import orderController from "../modules/order/orderController.js";
-import authMiddleware from "../common/middleware/authMiddleware.js";
-import checkRoleMiddleware from "../common/middleware/checkRoleMiddleware.js";
+import orderController from "./orderController.js";
+import authMiddleware from "../../common/middleware/authMiddleware.js";
+import checkRoleMiddleware from "../../common/middleware/checkRoleMiddleware.js";
 
 const router = express.Router();
 

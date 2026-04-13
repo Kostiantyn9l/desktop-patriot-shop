@@ -1,6 +1,6 @@
 import express from "express";
-import basketController from "../modules/basket/basketController.js";
-import authMiddleware from "../common/middleware/authMiddleware.js";
+import basketController from "./basketController.js";
+import authMiddleware from "../../common/middleware/authMiddleware.js";
 
 const router = express.Router();
 
