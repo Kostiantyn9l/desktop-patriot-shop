@@ -1,6 +1,6 @@
 import express from "express";
 import brandController from "../controllers/brandController.js";
-import checkRoleMiddleware from "../middleware/checkRoleMiddleware.js";
+import checkRoleMiddleware from "../common/middleware/checkRoleMiddleware.js";
 
 const router = express.Router();
 

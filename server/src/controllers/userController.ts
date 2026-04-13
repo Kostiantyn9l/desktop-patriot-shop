@@ -1,11 +1,11 @@
 import { type Request, type Response, type NextFunction} from "express";
-import ApiError from "../error/ApiError.js";
-import prisma from "../lib/prisma.js";
+import ApiError from "../common/error/ApiError.js";
+import prisma from "../common/lib/prisma.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../secrets.js";
 import type { Role } from "../../prisma/generated/prisma/enums.js";
-import { type AuthRequest } from "../middleware/authMiddleware.js";
+import { type AuthRequest } from "../common/middleware/authMiddleware.js";
 
 type JWTpayload = {
     id: number, 

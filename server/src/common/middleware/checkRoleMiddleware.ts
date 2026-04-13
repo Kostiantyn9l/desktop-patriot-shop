@@ -1,13 +1,14 @@
 import {type Request, type Response, type NextFunction} from "express";
 import jwt, { type JwtPayload } from "jsonwebtoken";
-import { JWT_SECRET } from "../secrets.js";
-import { type Role } from "../../prisma/generated/prisma/enums.js";
+import { JWT_SECRET } from "../../secrets.js";
+import { type Role } from "../../../prisma/generated/prisma/enums.js";
 
 export interface AuthRequest extends Request {
   user?: { id: number; role: Role };
 }
 
-export default function(req: AuthRequest, res: Response, next: NextFunction) {
+export default function(role: Role) {
+    return function(req: AuthRequest, res: Response, next: NextFunction) {
     if(req.method === "OPTIONS") {
         next();
     }
@@ -18,10 +19,14 @@ export default function(req: AuthRequest, res: Response, next: NextFunction) {
         }
 
         const decoded = jwt.verify(token, JWT_SECRET) as {id: number; role: Role};
+        if(decoded.role !== role) {
+            return res.status(403).json({message: "Немає доступу!"});
+        }
 
         req.user = decoded;
         next();
     } catch(e) {
         res.status(401).json({message: "Користувач не авторизований!"});
     }
+}
 }

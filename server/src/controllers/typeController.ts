@@ -1,5 +1,5 @@
 import { type Request, type Response } from "express";
-import prisma from "../lib/prisma.js";
+import prisma from "../common/lib/prisma.js";
 
 class typeController {
     async create(req: Request, res: Response) {

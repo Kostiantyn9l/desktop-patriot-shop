@@ -5,8 +5,8 @@ import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { Prisma } from "../../prisma/generated/prisma/client.js";
 
-import prisma from "../lib/prisma.js";
-import ApiError from "../error/ApiError.js";
+import prisma from "../common/lib/prisma.js";
+import ApiError from "../common/error/ApiError.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

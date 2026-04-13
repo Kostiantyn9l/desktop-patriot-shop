@@ -1,6 +1,6 @@
 import type { Response } from "express";
-import prisma from "../lib/prisma.js";
-import type { AuthRequest } from "../middleware/authMiddleware.js";
+import prisma from "../common/lib/prisma.js";
+import type { AuthRequest } from "../common/middleware/authMiddleware.js";
 
 class OrderController {
 

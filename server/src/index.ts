@@ -2,9 +2,9 @@ import { PORT } from "./secrets.js";
 import express, {type Express} from "express";
 import cors from "cors";
 import fileUpload from "express-fileupload";
-import prisma from "./lib/prisma.js";
+import prisma from "./common/lib/prisma.js";
 import rootRouter from "./routes/index.js";
-import errorHandler from "./middleware/ErrorHandlingMiddleware.js";
+import errorHandler from "./common/middleware/ErrorHandlingMiddleware.js";
 import path from "path";
 import { fileURLToPath } from "url";
 
