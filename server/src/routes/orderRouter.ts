@@ -1,5 +1,5 @@
 import express from "express";
-import orderController from "../controllers/ordersController.js";
+import orderController from "../modules/order/orderController.js";
 import authMiddleware from "../common/middleware/authMiddleware.js";
 import checkRoleMiddleware from "../common/middleware/checkRoleMiddleware.js";
 
